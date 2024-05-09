@@ -1,0 +1,32 @@
+.side_nav_container{
+    width: 15vw;
+    background-color: #2D2D2D !important;
+}
+
+.side_nav{
+    padding: 15% 5%;
+}
+
+.nav_list{
+    list-style-type: none;
+    padding: 10%;
+    margin: 0;
+}
+
+.nav_item{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: left; */
+    align-items: center;
+}
+
+.nav_item img{
+    width: 20px;
+    height: 20px;
+    margin-right: 20px;
+}
+
+.yellow_logo{
+    width: 30px !important; 
+    height: 30px !important;
+}
