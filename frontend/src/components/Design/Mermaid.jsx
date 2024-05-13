@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import mermaid from "mermaid";
 
 mermaid.initialize({
@@ -50,11 +50,14 @@ mermaid.initialize({
       stroke: #f8f8f2;
       stroke-width: 1;
     }`,
-  fontFamily: "Fira Code"
+  fontFamily: "Fira Code",
 });
 
-const Mermaid = ({ chart }) => {
-  return <pre className="mermaid" style={{ height: "100%", width: "100%" }}>{chart}</pre>;
-};
-
-export default Mermaid;
+export default class Mermaid extends React.Component {
+  componentDidMount() {
+    mermaid.contentLoaded();
+  }
+  render() {
+    return <div className="mermaid">{this.props.chart}</div>;
+  }
+}
