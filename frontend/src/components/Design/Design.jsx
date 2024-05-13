@@ -1,39 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./Design.css";
 import Mermaid from './Mermaid';
-
-
-const text = `
-    graph LR
-    subgraph "User Interface [User Interface]"
-        User[User interacts] --> Presentation_Layer
-    end
-    subgraph "Presentation Layer [Presentation Layer]"
-        Presentation_Layer --> Business_Logic_Layer[Prepares data for display]
-    end
-    subgraph "Business Logic Layer [Business Logic Layer]"
-        Business_Logic_Layer --> Data_Access_Layer[Business Logic Requests]
-    end
-    subgraph "Data Access Layer [Data Access Layer]"
-        Data_Access_Layer --> Database[Accesses data or performs actions]
-    end
-    subgraph "Database [Database]"
-        Database --> Data_Access_Layer[Fetches or updates data]
-    end
-
-`;
+import DesignContext from '../../context/DesignContext/designContext';
 
 function Design() {
-    const [mermaidText, setMermaidText] = useState("");
-    const updateDiagram = (text_input) => {
-        setMermaidText(text_input);
-    }
+    const { mermaidData, getMermaidData } = useContext(DesignContext);
+
     useEffect(() => {
-        updateDiagram(text);
-    });
+    }, []);
+
+    const handleSubmit = () => {
+        getMermaidData("Generate mermaid js flowchat code for 'libary management system");
+    }
     return (
-        <div style={{ height: "80vh", width: "80vw" }}>
-            <Mermaid chart={mermaidText} />
+        <div style={{ height: "100vh", width: "85%" }}>
+            <button onClick={() => handleSubmit()}>Submit</button>
+            <div>
+                <Mermaid chart={mermaidData} />
+            </div>
         </div>
     )
 }

@@ -54,7 +54,7 @@ mermaid.initialize({
 });
 
 const Mermaid = ({ chart }) => {
-  return <div className="mermaid" style={{ height: "100%", width: "100%" }}>{chart}</div>;
+  return <pre className="mermaid" style={{ height: "100%", width: "100%" }}>{chart}</pre>;
 };
 
 export default Mermaid;
