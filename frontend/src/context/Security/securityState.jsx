@@ -49,17 +49,17 @@ var instructions = `
 Scan and Generate vulnerability report for all the vulnerabilities found in the below code based on the following format, 
 
 total_vulnerabilities = INTEGER
-Vulnerabilities = array of map [{name: STRING, line_number: INTEGER}, {name: STRING, line_number: INTEGER}] 
+Vulnerabilities = array of map [{'name': STRING, 'line_number': INTEGER}, {'name': STRING, 'line_number': INTEGER}] 
 
 Example: 
 total_vulnerabilities = 3
-Vulnerabilities = [{'name': 'Cross Site Scripting', line_number: 3}, {'name' :'InsecureDependencies', line_number: 2 }]
+Vulnerabilities = [{'name': 'Cross Site Scripting', 'line_number': 3}, {'name' :'InsecureDependencies', 'line_number': 2 }]
 
 Code: 
 
 `;
 function SecurityState({ children }) {
-    const [vulnerabilityReport, setVulnerabilityReport] = useState("");
+    const [vulnerabilityReport, setVulnerabilityReport] = useState([]);
     const getVulnerabilityReport = async (inputData) => {
         const inputtext = instructions + inputData.codeInput;
         const formData =
@@ -87,7 +87,19 @@ function SecurityState({ children }) {
                 let res = response.data;
                 console.log("res: ", res);
                 res = res.candidates[0].content.parts[0].text;
-                setVulnerabilityReport(res);
+                let start = res.indexOf("=", res.indexOf("total_vulnerabilities"));
+                let end = res.indexOf("\n", start);
+                let total_vulnerabilities = Number(res.substr(start + 1, end - start - 1));
+
+                start = res.indexOf("=", res.indexOf("Vulnerabilities = "))
+                end = res.indexOf("]", start);
+                let obj = res.substr(start + 1, end - start);
+                obj = obj.trim();
+                obj = obj.replace(/'/g, '"');
+                console.log(obj);
+                obj = JSON.parse(obj);
+
+                setVulnerabilityReport(obj);
             })
             .catch(function (error) {
                 console.log(error);
