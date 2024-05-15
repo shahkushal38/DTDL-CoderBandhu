@@ -51,8 +51,8 @@ function Security() {
         : vulnerabilityReport.length > 0 && (
             <div>
               <h3>Total Vulnerabilities : {vulnerabilityReport?.length}</h3>
-              {vulnerabilityReport?.map((item) => (
-                <div>
+              {vulnerabilityReport?.map((item, key) => (
+                <div key={key}>
                   <span>
                     <b>Name : </b> {item?.name}
                   </span>

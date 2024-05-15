@@ -19,7 +19,7 @@ total_vulnerabilities = INTEGER
 Vulnerabilities = array of map [{name: STRING, line_number: INTEGER}, {name: STRING, line_number: INTEGER}] 
 
 Example: 
-total_vulnerabilities = 3
+total_vulnerabilities = 2
 Vulnerabilities = [{'name': 'Cross Site Scripting', line_number: 3}, {'name' :'InsecureDependencies', line_number: 2 }]
 
 Code:
@@ -52,7 +52,7 @@ total_vulnerabilities = INTEGER
 Vulnerabilities = array of map [{'name': STRING, 'line_number': INTEGER}, {'name': STRING, 'line_number': INTEGER}] 
 
 Example: 
-total_vulnerabilities = 3
+total_vulnerabilities = 2
 Vulnerabilities = [{'name': 'Cross Site Scripting', 'line_number': 3}, {'name' :'InsecureDependencies', 'line_number': 2 }]
 
 Code: 
