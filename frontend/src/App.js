@@ -11,9 +11,11 @@ function App() {
       <SideNavbar />
 
       <div className="right_container"></div>
-      {/* <TopNav /> */}
-      {/* <Design /> */}
-      <Security />
+      <div>
+        <TopNav />
+        <Design />
+        <Security />
+      </div>
     </div>
   );
 }
