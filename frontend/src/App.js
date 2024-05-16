@@ -9,13 +9,13 @@ function App() {
   return (
     <div className="App">
       <SideNavbar />
-
+      <TopNav />
       <div className="right_container"></div>
-      <div>
-        <TopNav />
-        <Design />
-        <Security />
-      </div>
+      {/* <div> */}
+      
+      {/* <Design />
+        <Security /> */}
+      {/* </div> */}
     </div>
   );
 }
