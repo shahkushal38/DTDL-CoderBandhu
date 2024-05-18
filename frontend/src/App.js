@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import TopNav from "./components/TopNav/TopNav";
 import Design from "./components/Design/Design";
 import Security from "./components/Security/Security";
+import Development from "./components/Development/Development";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <div className="right_container_content">
           <Routes>
             <Route path="/design" element={<Design />} />
+            <Route path="/development" element={<Development />} />
             <Route path="/security" element={<Security />} />
             <Route path="/" element={<Home />} />
           </Routes>

@@ -20,19 +20,17 @@ const SideNavbar = () => {
             </Link>
             <Link to="design">
               <li
-                className={`nav_item ${
-                  currentPath === "/design" ? "active" : ""
-                }`}
+                className={`nav_item ${currentPath === "/design" ? "active" : ""
+                  }`}
               >
                 <img src="./design_logo.png" alt="" className="yellow_logo" />
                 <p>Design</p>
               </li>
             </Link>
-            <Link to="developement">
+            <Link to="development">
               <li
-                className={`nav_item ${
-                  currentPath === "/development" ? "active" : ""
-                }`}
+                className={`nav_item ${currentPath === "/development" ? "active" : ""
+                  }`}
               >
                 <img src="./dev_logo.png" alt="" className="yellow_logo" />
                 <p>Development</p>
@@ -40,9 +38,8 @@ const SideNavbar = () => {
             </Link>
             <Link to="testing">
               <li
-                className={`nav_item ${
-                  currentPath === "/testing" ? "active" : ""
-                }`}
+                className={`nav_item ${currentPath === "/testing" ? "active" : ""
+                  }`}
               >
                 <img src="./testing_logo.png" alt="" className="yellow_logo" />
                 <p>Testing</p>
@@ -50,9 +47,8 @@ const SideNavbar = () => {
             </Link>
             <Link to="security">
               <li
-                className={`nav_item ${
-                  currentPath === "/security" ? "active" : ""
-                }`}
+                className={`nav_item ${currentPath === "/security" ? "active" : ""
+                  }`}
               >
                 <img src="./security_logo.png" alt="" className="yellow_logo" />
                 <p>Security</p>
@@ -61,9 +57,8 @@ const SideNavbar = () => {
             <Link to="deployment">
               <li
                 className="nav_item"
-                sName={`nav_item ${
-                  currentPath === "/deployment" ? "active" : ""
-                }`}
+                sName={`nav_item ${currentPath === "/deployment" ? "active" : ""
+                  }`}
               >
                 <img
                   src="./deployment_logo.png"
@@ -75,9 +70,8 @@ const SideNavbar = () => {
             </Link>
             <Link to="cospace">
               <li
-                className={`nav_item ${
-                  currentPath === "/cospace" ? "active" : ""
-                }`}
+                className={`nav_item ${currentPath === "/cospace" ? "active" : ""
+                  }`}
               >
                 <img src="./cospace_logo.png" alt="" className="yellow_logo" />
                 <p>CoSpace</p>
@@ -85,9 +79,8 @@ const SideNavbar = () => {
             </Link>
 
             <li
-              className={`nav_item ${
-                currentPath === "/contact" ? "active" : ""
-              }`}
+              className={`nav_item ${currentPath === "/contact" ? "active" : ""
+                }`}
             >
               <img src="./contact_logo.png" alt="" className="yellow_logo" />
               <p>Contact Us</p>
