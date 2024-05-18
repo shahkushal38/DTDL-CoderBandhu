@@ -7,6 +7,16 @@ const CoSpace = () => {
     pass: "",
     username: "",
   });
+
+  const data = [
+    { date: "2024-05-18", agenda: "Project Kickoff" },
+    {
+      date: "2024-05-19",
+      agenda: "Requirement Gathering",
+    },
+    { date: "2024-05-20", agenda: "Development Start"},
+  ];
+
   return (
     <div className="cospace_container">
       <h1 className="phase_heading">CoSpace</h1>
@@ -46,6 +56,29 @@ const CoSpace = () => {
         >
           JOIN MEET
         </button>
+      </div>
+      <div className="meet_history">
+          <h3>Meeting History</h3>
+        <table className="custom-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Agenda</th>
+              <th className="narrow_column">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((row, index) => (
+              <tr key={index}>
+                <td>{row.date}</td>
+                <td>{row.agenda}</td>
+                <td className="narrow_column">
+                  <button className="cospace_table_button">View meeting</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
