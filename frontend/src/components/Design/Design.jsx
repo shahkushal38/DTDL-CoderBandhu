@@ -16,7 +16,7 @@ function Design() {
 
   useEffect(() => {}, []);
 
-  const canSubmit = formData.chartInput != "" && formData.chartType.name != "";
+  const canSubmit = formData.chartInput != "" && formData.chartType != "";
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
