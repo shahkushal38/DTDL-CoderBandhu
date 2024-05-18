@@ -66,3 +66,7 @@
     width:150px; 
     height: auto; 
   }
+
+  .home_nav_tabs a{
+    text-decoration: none;
+  }
