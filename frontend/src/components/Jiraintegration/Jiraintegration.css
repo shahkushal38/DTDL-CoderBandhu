@@ -1,0 +1,32 @@
+.custom-table {
+  width: 90%;
+  border-collapse: collapse;
+  background: transparent;
+  border-radius: 10px;
+}
+
+.custom-table th,
+.custom-table td {
+  border: 1px solid white;
+  padding: 8px;
+  text-align: left;
+}
+
+.custom-table thead {
+  background-color: #9d2062;
+}
+
+.custom-table th {
+  color: white;
+}
+.cospace_table_button {
+  color: white;
+  background-color: #5edb63;
+  outline: none;
+  border: 1px solid #5edb63;
+  padding: 10px 20px;
+  border-radius: 5px;
+  width: 200px;
+  margin: 20px;
+  cursor: pointer;
+}
