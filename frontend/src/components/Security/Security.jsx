@@ -41,7 +41,6 @@ function Security() {
         ></textarea>
         <button
           disabled={!canSubmit}
-          onClick={() => getVulnerabilityReport("garbage")}
         >
           submit
         </button>
@@ -49,21 +48,21 @@ function Security() {
       {loading
         ? "Loading"
         : vulnerabilityReport.length > 0 && (
-            <div>
-              <h3>Total Vulnerabilities : {vulnerabilityReport?.length}</h3>
-              {vulnerabilityReport?.map((item, key) => (
-                <div key={key}>
-                  <span>
-                    <b>Name : </b> {item?.name}
-                  </span>
-                  <br />
-                  <span>
-                    <b>Line Number : </b> {item?.line_number}
-                  </span>
-                </div>
-              ))}
-            </div>
-          )}
+          <div>
+            <h3>Total Vulnerabilities : {vulnerabilityReport?.length}</h3>
+            {vulnerabilityReport?.map((item, key) => (
+              <div key={key}>
+                <span>
+                  <b>Name : </b> {item?.name}
+                </span>
+                <br />
+                <span>
+                  <b>Line Number : </b> {item?.line_number}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
     </div>
   );
 }

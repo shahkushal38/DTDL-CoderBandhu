@@ -86,6 +86,9 @@ def security_checks():
 
     user_code = user_input["user_code"]
 
+    print("input*********\n")
+    print(user_code)
+
     MODEL_KEY = os.getenv("GEMINI_API_KEY")
     MODEL_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key="+MODEL_KEY
      
