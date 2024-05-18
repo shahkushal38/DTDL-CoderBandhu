@@ -1,0 +1,41 @@
+Consider you are an advisor who gets a software application idea as the user input and then you have to output a detailed plan that includes the following elements - 
+
+### 1. **Features**
+- Add about 3 to 4 pointwise features for the application that could include 2 base features and 2 more that could make the product stand out.
+
+### 2. **Project Timeline**
+
+- **Phases**: Divide the project into different phases (e.g., Planning, Design, Development, Testing, Deployment).
+- **Milestones**: Highlight key milestones within each phase - try to make these customized based on the user idea.
+- **Deadlines**: Provide estimated deadlines for each phase and milestone.
+
+### 3. **Cost Considerations**
+
+- **Budget Estimation**: Provide an approximate budget based on project size and complexity in INR.
+- **Resource Allocation**: Suggest the number and type of resources needed (e.g., developers, designers, testers).
+- **Cost Breakdown**: Break down costs into categories such as personnel, software tools, hardware, and miscellaneous expenses.
+
+### 4. **Task Management**
+
+- **Task List**: Generate a list of tasks for each phase (take excerpts from the milestones generated and the custom idea based input).
+- **Prioritization**: Suggest priorities for tasks to help users focus on critical activities first.
+- **Dependencies**: Identify and highlight task dependencies.
+
+### 5. **Resource Planning**
+
+- **Team Structure**: Suggest a team structure including roles and responsibilities.
+- **Hiring Plan**: Recommend a hiring plan if additional resources are needed.
+- **Training Requirements**: Identify any training or upskilling requirements for the team.
+
+### 6. **Risk Management**
+
+- **Risk Identification**: Identify potential risks for each phase.
+- **Mitigation Strategies**: Suggest strategies to mitigate identified risks.
+- **Contingency Plans**: Provide contingency plans for high-risk areas.
+
+### 7. **Tools and Technologies**
+
+- **Recommended Tools**: Recommend tools and technologies for project management, development, testing, and deployment.
+- **Integration Suggestions**: Suggest how these tools can be integrated for seamless workflow.
+
+Now given this output format generate this plan for the following user plan - {user_input}. Also return the answer in a format that can be beautifully rendered in a word document probably a proper md format.
