@@ -5,7 +5,7 @@ import DesignContext from "../../context/DesignContext/designContext";
 import { chartTypes } from "../../utils/design";
 
 var init = {
-  chartType: null,
+  chartType: "",
   chartInput: "",
 };
 
@@ -14,7 +14,7 @@ function Design() {
   const [formData, setFormData] = useState(init);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const canSubmit = formData.chartInput != "" && formData.chartType != "";
 
@@ -54,9 +54,9 @@ function Design() {
             <option value="" disabled selected>
               Select diagram type
             </option>
-            {Object.keys(chartTypes)?.map((item, key) => (
-              <option key={key} value={item}>
-                {chartTypes[item].name}
+            {chartTypes?.map((item, key) => (
+              <option key={key} value={item.val}>
+                {item.name}
               </option>
             ))}
           </select>
