@@ -38,4 +38,4 @@ Consider you are an advisor who gets a software application idea as the user inp
 - **Recommended Tools**: Recommend tools and technologies for project management, development, testing, and deployment.
 - **Integration Suggestions**: Suggest how these tools can be integrated for seamless workflow.
 
-Now given this output format generate this plan for the following user plan - {user_input}. Also return the answer in a format that can be beautifully rendered in a word document probably a proper md format.
+Now given this output format generate this plan for the following user plan - {user_input}. Also return the answer in a format that can be beautifully rendered in a proper markdown format and also could you return the Project Timeline, Cost Consideration, Task Management in a tabular format.
