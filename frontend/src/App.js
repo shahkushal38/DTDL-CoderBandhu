@@ -6,6 +6,7 @@ import TopNav from "./components/TopNav/TopNav";
 import Design from "./components/Design/Design";
 import Security from "./components/Security/Security";
 import Development from "./components/Development/Development";
+import { Testing } from "./components/Testing/Testing";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route path="/design" element={<Design />} />
             <Route path="/development" element={<Development />} />
+            <Route path="/testing" element={<Testing />} />
             <Route path="/security" element={<Security />} />
             <Route path="/" element={<Home />} />
           </Routes>

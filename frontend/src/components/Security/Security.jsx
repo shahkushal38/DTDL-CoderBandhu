@@ -1,70 +1,69 @@
-import React, { useContext, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import SecurityContext from "../../context/Security/securityContext";
-
-var init = {
-  codeInput: "",
-};
+import { PrimaryButton, Stack, StackItem } from "@fluentui/react";
+import AceEditor from "react-ace";
+import "ace-builds/webpack-resolver";
+import "ace-builds/src-noconflict/mode-python";
+import "ace-builds/src-noconflict/theme-monokai";
+import "ace-builds/src-noconflict/theme-github";
+import "ace-builds/src-noconflict/ext-language_tools";
 
 function Security() {
+  const [formData, setFormData] = useState();
+
   const { vulnerabilityReport, getVulnerabilityReport } =
     useContext(SecurityContext);
 
-  const [formData, setFormData] = useState(init);
-  const [loading, setLoading] = useState(false);
+  function handleOnChange(newValue) {
+    setFormData(newValue);
+  }
 
-  const canSubmit = formData.codeInput != "";
+  const handleGenerateSecurityReport = useCallback(() => {
+    if (formData != null && formData.length > 0) {
+      console.log("Value in security -- ", formData);
+      const inputObject = {
+        codeInput: formData,
+      };
 
-  const handleChange = (event) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      setLoading(true);
-      await getVulnerabilityReport(formData);
-    } finally {
-      setLoading(false);
+      getVulnerabilityReport(inputObject);
     }
-  };
+  }, [getVulnerabilityReport, formData]);
+
+  console.log("Vulnerability - ", vulnerabilityReport);
 
   return (
-    <div>
-      <h1>Security</h1>
-      <form onSubmit={handleSubmit}>
-        <textarea
-          name="codeInput"
-          value={formData.codeInput}
-          onChange={handleChange}
-          rows={25}
-          cols={80}
-        ></textarea>
-        <button
-          disabled={!canSubmit}
-        >
-          submit
-        </button>
-      </form>
-      {loading
-        ? "Loading"
-        : vulnerabilityReport.length > 0 && (
-          <div>
-            <h3>Total Vulnerabilities : {vulnerabilityReport?.length}</h3>
-            {vulnerabilityReport?.map((item, key) => (
-              <div key={key}>
-                <span>
-                  <b>Name : </b> {item?.name}
-                </span>
-                <br />
-                <span>
-                  <b>Line Number : </b> {item?.line_number}
-                </span>
-              </div>
-            ))}
-          </div>
-        )}
-    </div>
+    <Stack verticallFill>
+      <StackItem>
+        <h1 className="phase_heading">Security Phase </h1>
+      </StackItem>
+
+      <StackItem>
+        <Stack verticalFill>
+          <StackItem>
+            <AceEditor
+              mode="python"
+              theme="monokai"
+              onChange={handleOnChange}
+              name="Security"
+              editorProps={{ $blockScrolling: true }}
+              debounceChangePeriod={3}
+              setOptions={{
+                enableBasicAutocompletion: true,
+                enableLiveAutocompletion: true,
+                enableSnippets: true,
+              }}
+            />
+          </StackItem>
+
+          <StackItem>
+            <PrimaryButton
+              text={"Submit"}
+              onClick={handleGenerateSecurityReport}
+            />
+          </StackItem>
+        </Stack>
+      </StackItem>
+    </Stack>
   );
 }
-
 export default Security;

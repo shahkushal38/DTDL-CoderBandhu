@@ -43,9 +43,13 @@ function DevelopmentState({ children }) {
         await axiosClient
             .post("api/develop", formData)
             .then(function (response) {
+
                 let res = response.data;
+                
                 res = res.data
                 res = res.toString()
+                res = res.substr(res.indexOf("\n", res.indexOf("```")) + 1);
+                res = res.substr(0, res.length - 3);
                 setFromComment(res);
             })
             .catch(function (error) {
