@@ -6,7 +6,7 @@ import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/theme-github";
 import "ace-builds/src-noconflict/ext-language_tools";
-import DevelopmentContext from "../../context/Development/developmentContext";
+import TestingContext from "../../context/Testing/testingContext";
 
 export function Testing() {
   const [value, setValue] = useState("");
@@ -16,7 +16,8 @@ export function Testing() {
     setValue(newValue);
   }
 
-  const { getDevelopmentCode, outputCode } = useContext(DevelopmentContext);
+  const { testcases,
+    getTestcases } = useContext(TestingContext);
 
   const handleGenerateTest = useCallback(() => {
     if (value != null && value.length > 0) {
@@ -27,9 +28,9 @@ export function Testing() {
         code: value,
       };
 
-      getDevelopmentCode(inputObject);
+      getTestcases(inputObject);
     }
-  }, [value, getDevelopmentCode]);
+  }, [value, getTestcases]);
 
   return (
     <Stack verticalFill>
@@ -72,7 +73,7 @@ export function Testing() {
               readOnly={true}
               name="Test Result"
               editorProps={{ $blockScrolling: true }}
-              value={outputCode}
+              value={testcases}
               setOptions={{
                 enableBasicAutocompletion: true,
                 enableLiveAutocompletion: true,
