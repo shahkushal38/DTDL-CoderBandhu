@@ -22,6 +22,21 @@ function Design() {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+
+    let reader = new FileReader();
+
+    reader.onload = (e) => {
+      const file = e.target.result;
+      console.log(file);
+      setFormData({ ...formData, chartInput: e.target.result });
+    };
+
+    reader.onerror = (e) => alert(e.target.error.name);
+    reader.readAsText(file);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
@@ -40,7 +55,7 @@ function Design() {
           <input
             name="chartInput"
             onChange={handleChange}
-            required
+            // required
             placeholder="Give short desciption"
             className="design_desc"
           />
@@ -61,14 +76,25 @@ function Design() {
             ))}
           </select>
         </div>
+        <div className="or-separator">
+          <span className="or">OR</span>
+        </div>
+        <input
+          type="file"
+          name="chartFileInput"
+          onChange={handleFileChange}
+          className="design_desc"
+          placeholder="Upload requirement file"
+        />
         <button
           type="submit"
-          disabled={!canSubmit}
+          // disabled={!canSubmit}
           className="design_submit_button"
         >
           Submit
         </button>
       </form>
+
       <div>
         {loading ? "Loading" : mermaidData && <Mermaid chart={mermaidData} />}
       </div>
