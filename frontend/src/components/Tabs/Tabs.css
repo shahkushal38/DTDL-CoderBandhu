@@ -1,0 +1,29 @@
+.tabs_container{
+    background-color: #2D2D2D;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    padding: 30px;
+    border-radius: 10px;
+    border: 2px solid #652F8D;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.tabs_container:hover{
+    background-color: #652F8D;
+    border: 2px solid white;
+}
+.tabs_icon{
+    width: 70px;
+    margin: auto;
+}
+.tabs_title{
+    color: #F59121;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
