@@ -56,8 +56,7 @@ const SideNavbar = () => {
             </Link>
             <Link to="deployment">
               <li
-                className="nav_item"
-                sName={`nav_item ${currentPath === "/deployment" ? "active" : ""
+                className={`nav_item ${currentPath === "/deployment" ? "active" : ""
                   }`}
               >
                 <img
