@@ -4,6 +4,9 @@ import axiosClient from "./../../services/axios-client";
 
 function DevelopmentState({ children }) {
     const [outputCode, setOutputCode] = useState("");
+    const [fromComment, setFromComment] = useState("");
+    const [queAns, setQueAns] = useState("");
+
     const getDevelopmentCode = async (inputData) => {
         const formData =
         {
@@ -18,7 +21,6 @@ function DevelopmentState({ children }) {
             .post("api/develop", formData)
             .then(function (response) {
                 let res = response.data;
-                console.log("resL ", res)
                 res = res.data
                 res = res.toString()
                 setOutputCode(res);
@@ -27,11 +29,61 @@ function DevelopmentState({ children }) {
                 console.log(error);
             });
     };
+
+    const getCodeFromComments = async (inputData) => {
+        const formData =
+        {
+            "user_input": {
+                "user_prompt": inputData.prompt,
+                "user_code": "",
+                "type": "generate_from_comment"
+            }
+        }
+
+        await axiosClient
+            .post("api/develop", formData)
+            .then(function (response) {
+                let res = response.data;
+                res = res.data
+                res = res.toString()
+                setFromComment(res);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+
+    const getQueAndAns = async (inputData) => {
+        const formData =
+        {
+            "user_input": {
+                "user_prompt": inputData.prompt,
+                "user_code": inputData.code,
+                "type": "question_answer"
+            }
+        }
+
+        await axiosClient
+            .post("api/develop", formData)
+            .then(function (response) {
+                let res = response.data;
+                res = res.data
+                res = res.toString()
+                setQueAns(res);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
     return (
         <DevelopmentContext.Provider
             value={{
+                outputCode,
+                fromComment,
+                queAns,
                 getDevelopmentCode,
-                outputCode
+                getCodeFromComments,
+                getQueAndAns,
             }}
         >
             {children}

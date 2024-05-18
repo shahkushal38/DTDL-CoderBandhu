@@ -130,8 +130,13 @@ def development_code():
     MODEL_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key="+MODEL_KEY
      
     headers = {"Content-Type": "application/json"}
-    
-    prompt = "generate new code with \'" + user_prompt + " \' for code: \'" + user_code + "\'." +  develop_prompts[type]
+    prompt = ""
+    if type == "rename": 
+        prompt = "generate new code with proper language specific indentition for \'" + user_prompt + " \' for code: \'" + user_code + "\'." +  develop_prompts[type]
+    elif type == "generate_from_comment":
+        prompt = "generate code from the below comment with proper language specific indentition for \' "+ user_prompt + "\'" + develop_prompts[type]
+    elif type == "question_answer":
+        prompt = "Give answer to the question based on given code. question: \'" + user_prompt + "\'. code: \'" + user_code + "\'. " + develop_prompts[type] 
 
     data = {
         "contents": [
