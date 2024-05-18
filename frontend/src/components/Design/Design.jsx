@@ -5,7 +5,7 @@ import DesignContext from "../../context/DesignContext/designContext";
 import { chartTypes } from "../../utils/design";
 
 var init = {
-  chartType: null,
+  chartType: "",
   chartInput: "",
 };
 
@@ -14,12 +14,27 @@ function Design() {
   const [formData, setFormData] = useState(init);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const canSubmit = formData.chartInput != "" && formData.chartType != "";
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+
+    let reader = new FileReader();
+
+    reader.onload = (e) => {
+      const file = e.target.result;
+      console.log(file);
+      setFormData({ ...formData, chartInput: e.target.result });
+    };
+
+    reader.onerror = (e) => alert(e.target.error.name);
+    reader.readAsText(file);
   };
 
   const handleSubmit = async (e) => {
@@ -40,7 +55,7 @@ function Design() {
           <input
             name="chartInput"
             onChange={handleChange}
-            required
+            // required
             placeholder="Give short desciption"
             className="design_desc"
           />
@@ -54,21 +69,32 @@ function Design() {
             <option value="" disabled selected>
               Select diagram type
             </option>
-            {Object.keys(chartTypes)?.map((item, key) => (
-              <option key={key} value={item}>
-                {chartTypes[item].name}
+            {chartTypes?.map((item, key) => (
+              <option key={key} value={item.val}>
+                {item.name}
               </option>
             ))}
           </select>
         </div>
+        <div className="or-separator">
+          <span className="or">OR</span>
+        </div>
+        <input
+          type="file"
+          name="chartFileInput"
+          onChange={handleFileChange}
+          className="design_desc"
+          placeholder="Upload requirement file"
+        />
         <button
           type="submit"
-          disabled={!canSubmit}
+          // disabled={!canSubmit}
           className="design_submit_button"
         >
           Submit
         </button>
       </form>
+
       <div>
         {loading ? "Loading" : mermaidData && <Mermaid chart={mermaidData} />}
       </div>
