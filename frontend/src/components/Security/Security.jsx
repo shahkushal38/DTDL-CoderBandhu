@@ -1,6 +1,13 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useCallback, useContext, useMemo, useState } from "react";
 import SecurityContext from "../../context/Security/securityContext";
-import { PrimaryButton, Stack, StackItem } from "@fluentui/react";
+import {
+  MessageBar,
+  MessageBarType,
+  PrimaryButton,
+  Spinner,
+  Stack,
+  StackItem,
+} from "@fluentui/react";
 import AceEditor from "react-ace";
 import "ace-builds/webpack-resolver";
 import "ace-builds/src-noconflict/mode-python";
@@ -11,7 +18,8 @@ import SecurityCharts from "./SecurityCharts";
 
 function Security() {
   const [formData, setFormData] = useState();
-
+  const [isDisable, setIsDisable] = useState(false);
+  const [isError, setIsError] = useState(false);
   const { vulnerabilityReport, getVulnerabilityReport } =
     useContext(SecurityContext);
 
@@ -21,16 +29,62 @@ function Security() {
 
   const handleGenerateSecurityReport = useCallback(() => {
     if (formData != null && formData.length > 0) {
+      setIsDisable(true);
       console.log("Value in security -- ", formData);
       const inputObject = {
         codeInput: formData,
       };
 
-      getVulnerabilityReport(inputObject);
+      getVulnerabilityReport(inputObject)
+        .then(() => {
+          console.log("In then");
+
+          setIsDisable(false);
+        })
+        .catch((err) => {
+          setIsError(true);
+        });
     }
   }, [getVulnerabilityReport, formData]);
 
-  console.log("Vulnerability - ", vulnerabilityReport);
+  const axes = useMemo(() => {
+    const vulnerability = new Map();
+    if (vulnerabilityReport) {
+      vulnerabilityReport.forEach((option) => {
+        if (vulnerability.has(option.name)) {
+          vulnerability.set(option.name, [
+            ...vulnerability.get(option.name),
+            option.line_number,
+          ]);
+        } else {
+          vulnerability.set(option.name, [option.line_number]);
+        }
+      });
+    }
+
+    return vulnerability;
+  }, [vulnerabilityReport]);
+
+  console.log("Vulnerability - ", axes);
+
+  function renderMessageBar() {
+    if (isError) {
+      return (
+        <MessageBar
+          title="Something went wrong"
+          messageBarType={MessageBarType.error}
+        />
+      );
+    }
+    return null;
+  }
+
+  function renderSpinner() {
+    if (isDisable) {
+      console.log("In spinner");
+      return <Spinner styles={{ root: { paddingTop: 22, marginLeft: -8 } }} />;
+    }
+  }
 
   return (
     <Stack verticallFill>
@@ -49,6 +103,7 @@ function Security() {
                   onChange={handleOnChange}
                   name="Security"
                   editorProps={{ $blockScrolling: true }}
+                  style={{ margin: 16 }}
                   debounceChangePeriod={3}
                   setOptions={{
                     enableBasicAutocompletion: true,
@@ -58,12 +113,19 @@ function Security() {
                 />
               </StackItem>
 
-              <StackItem>
-                <PrimaryButton
-                  text={"Submit"}
-                  onClick={handleGenerateSecurityReport}
-                />
-              </StackItem>
+              <Stack horizontal>
+                <StackItem>
+                  <PrimaryButton
+                    text={"Submit"}
+                    disabled={isDisable}
+                    onClick={handleGenerateSecurityReport}
+                    styles={{ root: { margin: 16 } }}
+                  />
+                </StackItem>
+                <StackItem>{renderSpinner()}</StackItem>
+              </Stack>
+
+              <StackItem>{renderMessageBar()}</StackItem>
             </Stack>
           </StackItem>
 

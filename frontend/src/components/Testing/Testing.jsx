@@ -1,6 +1,6 @@
 import React, { useCallback, useContext, useRef, useState } from "react";
 import AceEditor from "react-ace";
-import { PrimaryButton, Stack, StackItem, TextField } from "@fluentui/react";
+import { PrimaryButton, Spinner, Stack, StackItem, TextField } from "@fluentui/react";
 import "ace-builds/webpack-resolver";
 import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/theme-monokai";
@@ -10,17 +10,18 @@ import TestingContext from "../../context/Testing/testingContext";
 
 export function Testing() {
   const [value, setValue] = useState("");
+  const [isDisable, setIsDisable] = useState(false);
   const aceEditor = useRef();
 
   function handleOnChange(newValue) {
     setValue(newValue);
   }
 
-  const { testcases,
-    getTestcases } = useContext(TestingContext);
+  const { testcases, getTestcases } = useContext(TestingContext);
 
   const handleGenerateTest = useCallback(() => {
     if (value != null && value.length > 0) {
+      setIsDisable(true);
       console.log("Value -- ", value);
       const inputObject = {
         prompt:
@@ -28,10 +29,18 @@ export function Testing() {
         code: value,
       };
 
-      getTestcases(inputObject);
+      getTestcases(inputObject).then(() => {
+        setIsDisable(false);
+      });
     }
   }, [value, getTestcases]);
 
+  function renderSpinner() {
+    if (isDisable) {
+      console.log("In spinner");
+      return <Spinner styles={{ root: { paddingTop: 22, marginLeft: -8 } }} />;
+    }
+  }
   return (
     <Stack verticalFill>
       <StackItem>
@@ -49,6 +58,7 @@ export function Testing() {
               name="Development"
               editorProps={{ $blockScrolling: true }}
               debounceChangePeriod={3}
+              style={{ margin: 16 }}
               setOptions={{
                 enableBasicAutocompletion: true,
                 enableLiveAutocompletion: true,
@@ -61,8 +71,11 @@ export function Testing() {
                 <PrimaryButton
                   text="Generate Test Cases"
                   onClick={handleGenerateTest}
+                  styles={{ root: { margin: 16 } }}
+                  disabled={isDisable}
                 />
               </StackItem>
+              <StackItem>{renderSpinner()}</StackItem>
             </Stack>
           </StackItem>
 
@@ -74,6 +87,7 @@ export function Testing() {
               name="Test Result"
               editorProps={{ $blockScrolling: true }}
               value={testcases}
+              style={{ margin: 16 }}
               setOptions={{
                 enableBasicAutocompletion: true,
                 enableLiveAutocompletion: true,
