@@ -7,6 +7,7 @@ import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/theme-github";
 import "ace-builds/src-noconflict/ext-language_tools";
+import SecurityCharts from "./SecurityCharts";
 
 function Security() {
   const [formData, setFormData] = useState();
@@ -38,29 +39,39 @@ function Security() {
       </StackItem>
 
       <StackItem>
-        <Stack verticalFill>
+        <Stack horizontal>
           <StackItem>
-            <AceEditor
-              mode="python"
-              theme="monokai"
-              onChange={handleOnChange}
-              name="Security"
-              editorProps={{ $blockScrolling: true }}
-              debounceChangePeriod={3}
-              setOptions={{
-                enableBasicAutocompletion: true,
-                enableLiveAutocompletion: true,
-                enableSnippets: true,
-              }}
-            />
+            <Stack verticalFill>
+              <StackItem>
+                <AceEditor
+                  mode="python"
+                  theme="monokai"
+                  onChange={handleOnChange}
+                  name="Security"
+                  editorProps={{ $blockScrolling: true }}
+                  debounceChangePeriod={3}
+                  setOptions={{
+                    enableBasicAutocompletion: true,
+                    enableLiveAutocompletion: true,
+                    enableSnippets: true,
+                  }}
+                />
+              </StackItem>
+
+              <StackItem>
+                <PrimaryButton
+                  text={"Submit"}
+                  onClick={handleGenerateSecurityReport}
+                />
+              </StackItem>
+            </Stack>
           </StackItem>
 
-          <StackItem>
-            <PrimaryButton
-              text={"Submit"}
-              onClick={handleGenerateSecurityReport}
-            />
-          </StackItem>
+          {vulnerabilityReport.length > 0 && (
+            <StackItem>
+              <SecurityCharts vulnerabilityReport={vulnerabilityReport} />
+            </StackItem>
+          )}
         </Stack>
       </StackItem>
     </Stack>
