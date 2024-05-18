@@ -6,6 +6,7 @@ from flask_cors import CORS
 import requests
 
 from prompts.design import *
+from prompts.security import *
 
 load_dotenv()
 
@@ -54,6 +55,43 @@ def design_mermaid():
     headers = {"Content-Type": "application/json"}
     
     prompt = "Generate mermaid js \'" + diagram_name + " code\' for \'" + user_prompt + "\' . Example of mermaid js " + diagram_name + " is \'" + diagram_code + "\'"
+
+    data = {
+        "contents": [
+            {
+                "parts": [
+                    {
+                        "text": prompt
+                    }
+                ]
+            }
+        ],
+        "safety_settings": [
+            {
+                "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                "threshold": "BLOCK_NONE"
+            }
+        ]
+    }
+    
+    response = requests.post(MODEL_URL, headers=headers, json=data)
+    response = response.json()
+    text = response["candidates"][0]["content"]["parts"][0]["text"]
+    
+    return {"data": text}, 200
+
+@app.route('/api/security', methods=["POST"])
+def security_checks():
+    user_input = request.json["user_input"]
+
+    user_code = user_input["user_code"]
+
+    MODEL_KEY = os.getenv("GEMINI_API_KEY")
+    MODEL_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key="+MODEL_KEY
+     
+    headers = {"Content-Type": "application/json"}
+    
+    prompt = security_prompts + user_code
 
     data = {
         "contents": [
