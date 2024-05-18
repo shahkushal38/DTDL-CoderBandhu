@@ -8,3 +8,23 @@
   flex-direction: row;
   min-height: 100vh;
 }
+
+.right_container{
+  display: flex;
+  flex-direction: column;
+}
+
+.phase_heading{
+  color: #F59121;
+  margin: 0;
+}
+
+.right_container_content{
+  height: 90vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.right_container_content::-webkit-scrollbar {
+  display: none;
+}

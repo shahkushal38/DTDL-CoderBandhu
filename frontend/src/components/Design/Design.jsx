@@ -33,13 +33,27 @@ function Design() {
     }
   };
   return (
-    <div style={{ height: "100vh", width: "85%" }}>
-      <h1>Design</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <input name="chartInput" onChange={handleChange} required />
-          <select name="chartType" onChange={handleChange} required>
-            <option value="" hidden defaultChecked></option>
+    <div className="design_container">
+      <h1 className="phase_heading">Design</h1>
+      <form onSubmit={handleSubmit} className="design_phase_form">
+        <div className="design_input">
+          <input
+            name="chartInput"
+            onChange={handleChange}
+            required
+            placeholder="Give short desciption"
+            className="design_desc"
+          />
+          <select
+            name="chartType"
+            onChange={handleChange}
+            required
+            placeholder="Select type of diagram"
+            className="design_select"
+          >
+            <option value="" disabled selected>
+              Select diagram type
+            </option>
             {Object.keys(chartTypes)?.map((item, key) => (
               <option key={key} value={item}>
                 {chartTypes[item].name}
@@ -47,7 +61,11 @@ function Design() {
             ))}
           </select>
         </div>
-        <button type="submit" disabled={!canSubmit}>
+        <button
+          type="submit"
+          disabled={!canSubmit}
+          className="design_submit_button"
+        >
           Submit
         </button>
       </form>

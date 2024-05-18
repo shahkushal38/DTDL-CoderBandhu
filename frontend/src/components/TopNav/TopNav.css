@@ -12,8 +12,8 @@
 }*/
 
 .top_nav_container{
-    height: 80px;
-    width: 83vw;
+    height: 10vh;
+    width: 80vw;
     display: flex;
     justify-content: space-between;
     align-items: center;

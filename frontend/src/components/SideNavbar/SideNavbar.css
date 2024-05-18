@@ -7,6 +7,11 @@
     padding: 15% 5%;
 }
 
+.side_nav a{
+    text-decoration: none;
+    color: white;
+}
+
 .nav_list{
     list-style-type: none;
     padding: 10%;
