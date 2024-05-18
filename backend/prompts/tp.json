@@ -1,0 +1,352 @@
+{
+    "all": [
+        {
+            "expand": "operations,versionedRepresentations,editmeta,changelog,customfield_10010.requestTypePractice,renderedFields",
+            "fields": {
+                "aggregateprogress": {
+                    "progress": 0,
+                    "total": 0
+                },
+                "aggregatetimeestimate": null,
+                "aggregatetimeoriginalestimate": null,
+                "aggregatetimespent": null,
+                "assignee": {
+                    "accountId": "712020:5e3dda0c-fd80-41a5-b385-be16948a3cf5",
+                    "accountType": "atlassian",
+                    "active": true,
+                    "avatarUrls": {
+                        "16x16": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png",
+                        "24x24": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png",
+                        "32x32": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png",
+                        "48x48": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png"
+                    },
+                    "displayName": "Mansi Dwivedi",
+                    "emailAddress": "dwivedimav@gmail.com",
+                    "self": "https://dwivedimav.atlassian.net/rest/api/2/user?accountId=712020%3A5e3dda0c-fd80-41a5-b385-be16948a3cf5",
+                    "timeZone": "Asia/Calcutta"
+                },
+                "components": [],
+                "created": "2024-05-18T20:35:02.848+0530",
+                "creator": {
+                    "accountId": "712020:5e3dda0c-fd80-41a5-b385-be16948a3cf5",
+                    "accountType": "atlassian",
+                    "active": true,
+                    "avatarUrls": {
+                        "16x16": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png",
+                        "24x24": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png",
+                        "32x32": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png",
+                        "48x48": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png"
+                    },
+                    "displayName": "Mansi Dwivedi",
+                    "emailAddress": "dwivedimav@gmail.com",
+                    "self": "https://dwivedimav.atlassian.net/rest/api/2/user?accountId=712020%3A5e3dda0c-fd80-41a5-b385-be16948a3cf5",
+                    "timeZone": "Asia/Calcutta"
+                },
+                "customfield_10000": "{}",
+                "customfield_10001": null,
+                "customfield_10002": null,
+                "customfield_10003": null,
+                "customfield_10004": null,
+                "customfield_10005": null,
+                "customfield_10006": null,
+                "customfield_10007": null,
+                "customfield_10008": null,
+                "customfield_10009": null,
+                "customfield_10010": null,
+                "customfield_10014": null,
+                "customfield_10015": null,
+                "customfield_10016": null,
+                "customfield_10017": null,
+                "customfield_10018": {
+                    "hasEpicLinkFieldDependency": false,
+                    "nonEditableReason": {
+                        "message": "To set an epic as the parent, use the epic link instead",
+                        "reason": "EPIC_LINK_SHOULD_BE_USED"
+                    },
+                    "showField": false
+                },
+                "customfield_10019": "0|i00007:",
+                "customfield_10020": null,
+                "customfield_10021": null,
+                "customfield_10022": null,
+                "customfield_10023": null,
+                "customfield_10024": null,
+                "customfield_10025": null,
+                "customfield_10026": null,
+                "customfield_10027": null,
+                "customfield_10028": null,
+                "customfield_10029": null,
+                "description": null,
+                "duedate": null,
+                "environment": null,
+                "fixVersions": [],
+                "issuelinks": [],
+                "issuetype": {
+                    "avatarId": 10318,
+                    "description": "Tasks track small, distinct pieces of work.",
+                    "entityId": "e2250dfa-b0da-4320-8589-2f235a8416b4",
+                    "hierarchyLevel": 0,
+                    "iconUrl": "https://dwivedimav.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+                    "id": "10001",
+                    "name": "Task",
+                    "self": "https://dwivedimav.atlassian.net/rest/api/2/issuetype/10001",
+                    "subtask": false
+                },
+                "labels": [],
+                "lastViewed": null,
+                "priority": {
+                    "iconUrl": "https://dwivedimav.atlassian.net/images/icons/priorities/medium.svg",
+                    "id": "3",
+                    "name": "Medium",
+                    "self": "https://dwivedimav.atlassian.net/rest/api/2/priority/3"
+                },
+                "progress": {
+                    "progress": 0,
+                    "total": 0
+                },
+                "project": {
+                    "avatarUrls": {
+                        "16x16": "https://dwivedimav.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10407?size=xsmall",
+                        "24x24": "https://dwivedimav.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10407?size=small",
+                        "32x32": "https://dwivedimav.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10407?size=medium",
+                        "48x48": "https://dwivedimav.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10407"
+                    },
+                    "id": "10000",
+                    "key": "KAN",
+                    "name": "coderbandhu",
+                    "projectTypeKey": "software",
+                    "self": "https://dwivedimav.atlassian.net/rest/api/2/project/10000",
+                    "simplified": true
+                },
+                "reporter": {
+                    "accountId": "712020:5e3dda0c-fd80-41a5-b385-be16948a3cf5",
+                    "accountType": "atlassian",
+                    "active": true,
+                    "avatarUrls": {
+                        "16x16": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png",
+                        "24x24": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png",
+                        "32x32": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png",
+                        "48x48": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png"
+                    },
+                    "displayName": "Mansi Dwivedi",
+                    "emailAddress": "dwivedimav@gmail.com",
+                    "self": "https://dwivedimav.atlassian.net/rest/api/2/user?accountId=712020%3A5e3dda0c-fd80-41a5-b385-be16948a3cf5",
+                    "timeZone": "Asia/Calcutta"
+                },
+                "resolution": null,
+                "resolutiondate": null,
+                "security": null,
+                "status": {
+                    "description": "",
+                    "iconUrl": "https://dwivedimav.atlassian.net/",
+                    "id": "10000",
+                    "name": "To Do",
+                    "self": "https://dwivedimav.atlassian.net/rest/api/2/status/10000",
+                    "statusCategory": {
+                        "colorName": "blue-gray",
+                        "id": 2,
+                        "key": "new",
+                        "name": "To Do",
+                        "self": "https://dwivedimav.atlassian.net/rest/api/2/statuscategory/2"
+                    }
+                },
+                "statuscategorychangedate": "2024-05-18T20:35:03.121+0530",
+                "subtasks": [],
+                "summary": "another test one",
+                "timeestimate": null,
+                "timeoriginalestimate": null,
+                "timespent": null,
+                "updated": "2024-05-18T20:35:05.536+0530",
+                "versions": [],
+                "votes": {
+                    "hasVoted": false,
+                    "self": "https://dwivedimav.atlassian.net/rest/api/2/issue/KAN-2/votes",
+                    "votes": 0
+                },
+                "watches": {
+                    "isWatching": true,
+                    "self": "https://dwivedimav.atlassian.net/rest/api/2/issue/KAN-2/watchers",
+                    "watchCount": 1
+                },
+                "workratio": -1
+            },
+            "id": "10001",
+            "key": "KAN-2",
+            "self": "https://dwivedimav.atlassian.net/rest/api/2/issue/10001"
+        },
+        {
+            "expand": "operations,versionedRepresentations,editmeta,changelog,customfield_10010.requestTypePractice,renderedFields",
+            "fields": {
+                "aggregateprogress": {
+                    "progress": 0,
+                    "total": 0
+                },
+                "aggregatetimeestimate": null,
+                "aggregatetimeoriginalestimate": null,
+                "aggregatetimespent": null,
+                "assignee": {
+                    "accountId": "712020:5e3dda0c-fd80-41a5-b385-be16948a3cf5",
+                    "accountType": "atlassian",
+                    "active": true,
+                    "avatarUrls": {
+                        "16x16": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png",
+                        "24x24": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png",
+                        "32x32": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png",
+                        "48x48": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png"
+                    },
+                    "displayName": "Mansi Dwivedi",
+                    "emailAddress": "dwivedimav@gmail.com",
+                    "self": "https://dwivedimav.atlassian.net/rest/api/2/user?accountId=712020%3A5e3dda0c-fd80-41a5-b385-be16948a3cf5",
+                    "timeZone": "Asia/Calcutta"
+                },
+                "components": [],
+                "created": "2024-05-18T20:04:30.664+0530",
+                "creator": {
+                    "accountId": "712020:5e3dda0c-fd80-41a5-b385-be16948a3cf5",
+                    "accountType": "atlassian",
+                    "active": true,
+                    "avatarUrls": {
+                        "16x16": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png",
+                        "24x24": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png",
+                        "32x32": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png",
+                        "48x48": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png"
+                    },
+                    "displayName": "Mansi Dwivedi",
+                    "emailAddress": "dwivedimav@gmail.com",
+                    "self": "https://dwivedimav.atlassian.net/rest/api/2/user?accountId=712020%3A5e3dda0c-fd80-41a5-b385-be16948a3cf5",
+                    "timeZone": "Asia/Calcutta"
+                },
+                "customfield_10000": "{branch={count=1, dataType=branch}, json={\"cachedValue\":{\"errors\":[],\"summary\":{\"branch\":{\"overall\":{\"count\":1,\"lastUpdated\":\"2024-05-13T00:13:01.000+0530\",\"dataType\":\"branch\"},\"byInstanceType\":{\"GitHub\":{\"count\":1,\"name\":\"GitHub\"}}}}},\"isStale\":false}}",
+                "customfield_10001": null,
+                "customfield_10002": null,
+                "customfield_10003": null,
+                "customfield_10004": null,
+                "customfield_10005": null,
+                "customfield_10006": null,
+                "customfield_10007": null,
+                "customfield_10008": null,
+                "customfield_10009": null,
+                "customfield_10010": null,
+                "customfield_10014": null,
+                "customfield_10015": null,
+                "customfield_10016": null,
+                "customfield_10017": null,
+                "customfield_10018": {
+                    "hasEpicLinkFieldDependency": false,
+                    "nonEditableReason": {
+                        "message": "To set an epic as the parent, use the epic link instead",
+                        "reason": "EPIC_LINK_SHOULD_BE_USED"
+                    },
+                    "showField": false
+                },
+                "customfield_10019": "0|hzzzzz:",
+                "customfield_10020": null,
+                "customfield_10021": null,
+                "customfield_10022": null,
+                "customfield_10023": null,
+                "customfield_10024": null,
+                "customfield_10025": null,
+                "customfield_10026": null,
+                "customfield_10027": null,
+                "customfield_10028": null,
+                "customfield_10029": null,
+                "description": "Add a feature which will take as input the json schema of a table along with its column names and then write the code to create a create table statement.",
+                "duedate": null,
+                "environment": null,
+                "fixVersions": [],
+                "issuelinks": [],
+                "issuetype": {
+                    "avatarId": 10318,
+                    "description": "Tasks track small, distinct pieces of work.",
+                    "entityId": "e2250dfa-b0da-4320-8589-2f235a8416b4",
+                    "hierarchyLevel": 0,
+                    "iconUrl": "https://dwivedimav.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+                    "id": "10001",
+                    "name": "Task",
+                    "self": "https://dwivedimav.atlassian.net/rest/api/2/issuetype/10001",
+                    "subtask": false
+                },
+                "labels": [],
+                "lastViewed": "2024-05-19T01:09:40.337+0530",
+                "priority": {
+                    "iconUrl": "https://dwivedimav.atlassian.net/images/icons/priorities/medium.svg",
+                    "id": "3",
+                    "name": "Medium",
+                    "self": "https://dwivedimav.atlassian.net/rest/api/2/priority/3"
+                },
+                "progress": {
+                    "progress": 0,
+                    "total": 0
+                },
+                "project": {
+                    "avatarUrls": {
+                        "16x16": "https://dwivedimav.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10407?size=xsmall",
+                        "24x24": "https://dwivedimav.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10407?size=small",
+                        "32x32": "https://dwivedimav.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10407?size=medium",
+                        "48x48": "https://dwivedimav.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10407"
+                    },
+                    "id": "10000",
+                    "key": "KAN",
+                    "name": "coderbandhu",
+                    "projectTypeKey": "software",
+                    "self": "https://dwivedimav.atlassian.net/rest/api/2/project/10000",
+                    "simplified": true
+                },
+                "reporter": {
+                    "accountId": "712020:5e3dda0c-fd80-41a5-b385-be16948a3cf5",
+                    "accountType": "atlassian",
+                    "active": true,
+                    "avatarUrls": {
+                        "16x16": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png",
+                        "24x24": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png",
+                        "32x32": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png",
+                        "48x48": "https://secure.gravatar.com/avatar/4a23c3e8fbf49fcab90ebb9dff274570?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMD-5.png"
+                    },
+                    "displayName": "Mansi Dwivedi",
+                    "emailAddress": "dwivedimav@gmail.com",
+                    "self": "https://dwivedimav.atlassian.net/rest/api/2/user?accountId=712020%3A5e3dda0c-fd80-41a5-b385-be16948a3cf5",
+                    "timeZone": "Asia/Calcutta"
+                },
+                "resolution": null,
+                "resolutiondate": null,
+                "security": null,
+                "status": {
+                    "description": "",
+                    "iconUrl": "https://dwivedimav.atlassian.net/",
+                    "id": "10000",
+                    "name": "To Do",
+                    "self": "https://dwivedimav.atlassian.net/rest/api/2/status/10000",
+                    "statusCategory": {
+                        "colorName": "blue-gray",
+                        "id": 2,
+                        "key": "new",
+                        "name": "To Do",
+                        "self": "https://dwivedimav.atlassian.net/rest/api/2/statuscategory/2"
+                    }
+                },
+                "statuscategorychangedate": "2024-05-18T20:04:30.972+0530",
+                "subtasks": [],
+                "summary": "table creation",
+                "timeestimate": null,
+                "timeoriginalestimate": null,
+                "timespent": null,
+                "updated": "2024-05-19T01:12:22.478+0530",
+                "versions": [],
+                "votes": {
+                    "hasVoted": false,
+                    "self": "https://dwivedimav.atlassian.net/rest/api/2/issue/KAN-1/votes",
+                    "votes": 0
+                },
+                "watches": {
+                    "isWatching": true,
+                    "self": "https://dwivedimav.atlassian.net/rest/api/2/issue/KAN-1/watchers",
+                    "watchCount": 1
+                },
+                "workratio": -1
+            },
+            "id": "10000",
+            "key": "KAN-1",
+            "self": "https://dwivedimav.atlassian.net/rest/api/2/issue/10000"
+        }
+    ]
+}
