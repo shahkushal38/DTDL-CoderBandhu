@@ -1,43 +1,26 @@
 import { useState } from "react";
 import DevelopmentContext from "./developmentContext";
-import axios from 'axios';
-
-
-const sampleoutput = `
-def foo(num1):\n    print(num1)\n
-`;
-
-const sampleinput = `
-generate new code with 'the variable msg should be renamed to num1' for code: 'def foo(msg): print(msg) '. The code must be returned with proper language specific indentation. Example: The variable a and b should be renamed to num1 and num2 output for code: 'def is_equal(a, b): return a == b 'output: def is_equal(num1, num2): return num1 == num2`;
-
-const GEMENI_KEY = process.env.REACT_APP_GEMENI_KEY ?? "";
-const BASE_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=" + GEMENI_KEY;
-const headers = {
-    "Content-Type": "application/json"
-}
+import axiosClient from "./../../services/axios-client";
 
 function DevelopmentState({ children }) {
     const [outputCode, setOutputCode] = useState("");
     const getDevelopmentCode = async (inputData) => {
-        const inputtext = "generate new code with \'" + inputData.prompt + " for code: \' for \'" + inputData.code + "\' . Example: The variable a and b should be renamed to num1 and num2 for code: 'def is_equal(a, b):\n\treturn a == b' output: 'def is_equal(num1, num2):\n\treturn num1 == num2'";
         const formData =
         {
-            "contents": [
-                {
-                    "parts": [
-                        {
-                            "text": inputtext
-                        }
-                    ]
-                }
-            ]
+            "user_input": {
+                "user_prompt": inputData.prompt,
+                "user_code": inputData.code,
+                "type": "rename"
+            }
         }
 
-        await axios
-            .post(BASE_URL, formData, headers)
+        await axiosClient
+            .post("api/develop", formData)
             .then(function (response) {
                 let res = response.data;
-                res = res.candidates[0].content.parts[0].text;
+                console.log("resL ", res)
+                res = res.data
+                res = res.toString()
                 setOutputCode(res);
             })
             .catch(function (error) {

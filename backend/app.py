@@ -7,6 +7,7 @@ import requests
 
 from prompts.design import *
 from prompts.security import *
+from prompts.development import *
 
 load_dotenv()
 
@@ -86,15 +87,51 @@ def security_checks():
 
     user_code = user_input["user_code"]
 
-    print("input*********\n")
-    print(user_code)
-
     MODEL_KEY = os.getenv("GEMINI_API_KEY")
     MODEL_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key="+MODEL_KEY
      
     headers = {"Content-Type": "application/json"}
     
     prompt = security_prompts + user_code
+
+    data = {
+        "contents": [
+            {
+                "parts": [
+                    {
+                        "text": prompt
+                    }
+                ]
+            }
+        ],
+        "safety_settings": [
+            {
+                "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                "threshold": "BLOCK_NONE"
+            }
+        ]
+    }
+    
+    response = requests.post(MODEL_URL, headers=headers, json=data)
+    response = response.json()
+    text = response["candidates"][0]["content"]["parts"][0]["text"]
+    
+    return {"data": text}, 200
+
+@app.route('/api/develop', methods=["POST"])
+def development_code():
+    user_input = request.json["user_input"]
+
+    user_prompt = user_input["user_prompt"]
+    user_code = user_input["user_code"]
+    type = user_input["type"]
+
+    MODEL_KEY = os.getenv("GEMINI_API_KEY")
+    MODEL_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key="+MODEL_KEY
+     
+    headers = {"Content-Type": "application/json"}
+    
+    prompt = "generate new code with \'" + user_prompt + " \' for code: \'" + user_code + "\'." +  develop_prompts[type]
 
     data = {
         "contents": [
