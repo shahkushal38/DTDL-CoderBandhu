@@ -6,6 +6,7 @@ import DesignState from "./context/DesignContext/designState";
 import SecurityState from "./context/Security/securityState";
 import { BrowserRouter } from "react-router-dom";
 import DevelopmentState from "./context/Development/developmentState";
+import TestingState from "./context/Testing/testingState";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -13,9 +14,11 @@ root.render(
     <BrowserRouter>
       <DesignState>
         <DevelopmentState>
-          <SecurityState>
-            <App />
-          </SecurityState>
+          <TestingState>
+            <SecurityState>
+              <App />
+            </SecurityState>
+          </TestingState>
         </DevelopmentState>
       </DesignState>
     </BrowserRouter>

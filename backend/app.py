@@ -165,7 +165,7 @@ def development_code():
 @app.route('/api/testing', methods=['POST'])
 def testing_code():
     # Parse the input string from the request body
-    input_data = request.data.decode('utf-8')
+    input_data = request.json["user_code"]
     if not input_data:
         return jsonify({"error": "Invalid input"}), 400
     # Define the message structure
@@ -231,7 +231,7 @@ def testing_code():
     completion_content = chat_completion.choices[0].message.content
 
     # Return the response
-    return jsonify({"Test_code": completion_content})
+    return jsonify({"test_code": completion_content})
 
 
 if __name__ == '__main__':
