@@ -1,0 +1,39 @@
+.deployment_container{
+    padding: 0 20px;
+}
+
+.meet_id{
+    width: 45%;
+    margin-right: 20px;
+    padding: 15px 15px;
+    background-color: #2D2D2D;
+    border: 1px;
+    border-radius: 5px;
+    color: white;
+}
+
+.meet_id::placeholder {
+    color: rgb(201, 201, 201);
+    opacity: 1; /* Firefox */
+    font-family: 'Poppins';
+}
+
+.meet_id:focus{
+    outline: none;
+}
+
+.deployment_form_item{
+    margin: 10px 0;
+}
+
+.meet_join_button{
+    color: white;
+    background-color: #9D2062;
+    outline: none;
+    border: 1px solid #9D2062;
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: 200px;
+    margin: 20px;
+    cursor: pointer;
+}

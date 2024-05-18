@@ -6,6 +6,8 @@ import TopNav from "./components/TopNav/TopNav";
 import Design from "./components/Design/Design";
 import Security from "./components/Security/Security";
 import Development from "./components/Development/Development";
+import Deployment from "./components/Deployment/Deployment";
+import CoSpace from "./components/CoSpace/CoSpace";
 import { Testing } from "./components/Testing/Testing";
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
             <Route path="/development" element={<Development />} />
             <Route path="/testing" element={<Testing />} />
             <Route path="/security" element={<Security />} />
+            <Route path="/deployment" element={<Deployment />} />
+            <Route path="/cospace" element={<CoSpace />} />
             <Route path="/" element={<Home />} />
           </Routes>
         </div>
