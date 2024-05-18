@@ -58,6 +58,27 @@ export default class Mermaid extends React.Component {
     mermaid.contentLoaded();
   }
   render() {
-    return <div className="mermaid">{this.props.chart}</div>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          className="mermaid"
+          style={{
+            backgroundColor: "white",
+            minWidth: "80vw",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+          }}
+        >
+          {this.props.chart}
+        </div>
+      </div>
+    );
   }
 }
