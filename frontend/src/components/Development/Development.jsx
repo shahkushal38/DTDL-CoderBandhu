@@ -1,16 +1,19 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useCallback, useContext, useRef, useState } from "react";
 import AceEditor from "react-ace";
-import { PrimaryButton, Stack, StackItem } from "@fluentui/react";
+import { PrimaryButton, Stack, StackItem, TextField } from "@fluentui/react";
 import "ace-builds/webpack-resolver";
-import "ace-builds/src-noconflict/mode-java";
+import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/theme-monokai";
+import "ace-builds/src-noconflict/theme-github";
 import "ace-builds/src-noconflict/ext-language_tools";
 import DevelopmentContext from "../../context/Development/developmentContext";
 
 export function Development() {
   const [value, setValue] = useState("");
-  function handleOnChange(newValue) {
-    console.log("seleccted Text - ", newValue);
+  const aceEditor = useRef();
+
+  function handleOnSelectionChange(selectedValue, _) {
+    const newValue = aceEditor.current.editor.getSelectedText();
     setValue(newValue);
   }
 
@@ -21,7 +24,19 @@ export function Development() {
       console.log("Value -- ", value);
       const inputObject = {
         prompt:
-          "Enhance the varaible namings of the following code as per the business logic",
+          "Enhance the variable namings of the following code as per the business logic",
+        code: value,
+      };
+
+      getDevelopmentCode(inputObject);
+    }
+  }, [value, getDevelopmentCode]);
+
+  const handleGenerateCode = useCallback(() => {
+    if (value != null && value.length > 0) {
+      console.log("Value -- ", value);
+      const inputObject = {
+        prompt: "Generate the code for given text- ",
         code: value,
       };
 
@@ -40,12 +55,13 @@ export function Development() {
           <Stack horizontal tokens={{ childrenGap: 16 }}>
             <StackItem>
               <AceEditor
-                mode="java"
+                ref={aceEditor}
+                mode="python"
                 theme="monokai"
-                onChange={handleOnChange}
+                onSelectionChange={handleOnSelectionChange}
                 name="Development"
                 editorProps={{ $blockScrolling: true }}
-                value={value}
+                debounceChangePeriod={3}
                 setOptions={{
                   enableBasicAutocompletion: true,
                   enableLiveAutocompletion: true,
@@ -53,19 +69,45 @@ export function Development() {
                 }}
               ></AceEditor>
 
-              <PrimaryButton
-                text="Improve Variable Naming"
-                onClick={handleVariablesClick}
-              />
+              <Stack horizontal tokens={{ childrenGap: 16 }}>
+                <StackItem>
+                  <PrimaryButton
+                    text="Improve Variable Naming"
+                    onClick={handleVariablesClick}
+                  />
+                </StackItem>
+                <StackItem>
+                  <PrimaryButton
+                    text="Generate code"
+                    onClick={handleGenerateCode}
+                  />
+                </StackItem>
+                <StackItem>
+                  <PrimaryButton
+                    text="Understand Selected code"
+                    onClick={handleGenerateCode}
+                  />
+                </StackItem>
+              </Stack>
+
+              <Stack verticalFill>
+
+                <StackItem>
+                  <TextField label="Enter your prompt" multiline rows={3} />
+                </StackItem>
+                <StackItem>
+                  <PrimaryButton text="Submit" />
+                </StackItem>
+              </Stack>
             </StackItem>
+
             <StackItem>
               <AceEditor
-                mode="java"
-                theme="monokai"
-                // onChange={handleOnChange}
+                mode="python"
+                theme="github"
+                readOnly={true}
                 name="Result"
                 editorProps={{ $blockScrolling: true }}
-                // value={value}
                 value={outputCode}
                 setOptions={{
                   enableBasicAutocompletion: true,
