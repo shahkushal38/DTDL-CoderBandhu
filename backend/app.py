@@ -258,7 +258,7 @@ def open_chat():
         return jsonify({'message': '"Welcome! How can I assist you today mansi?"'}), 200
             
     except:
-        return jsonify({'message': 'Try again!'}), 404
+        return jsonify({'error': 'Try again!'}), 404
 
 
 @app.route('/api/design', methods=["POST"])

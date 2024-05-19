@@ -1,6 +1,12 @@
 import React, { useCallback, useContext, useRef, useState } from "react";
 import AceEditor from "react-ace";
-import { PrimaryButton, Spinner, Stack, StackItem, TextField } from "@fluentui/react";
+import {
+  PrimaryButton,
+  Spinner,
+  Stack,
+  StackItem,
+  TextField,
+} from "@fluentui/react";
 import "ace-builds/webpack-resolver";
 import "ace-builds/src-noconflict/mode-python";
 import "ace-builds/src-noconflict/theme-monokai";
@@ -58,7 +64,7 @@ export function Testing() {
               name="Development"
               editorProps={{ $blockScrolling: true }}
               debounceChangePeriod={3}
-              style={{ margin: 16 }}
+              style={{ margin: 16, width: "40vw" }}
               setOptions={{
                 enableBasicAutocompletion: true,
                 enableLiveAutocompletion: true,
@@ -68,12 +74,19 @@ export function Testing() {
 
             <Stack horizontal tokens={{ childrenGap: 16 }}>
               <StackItem>
-                <PrimaryButton
+                {/* <PrimaryButton
                   text="Generate Test Cases"
                   onClick={handleGenerateTest}
                   styles={{ root: { margin: 16 } }}
                   disabled={isDisable}
-                />
+                /> */}
+                <button
+                  disabled={isDisable}
+                  onClick={handleGenerateTest}
+                  className="dev_button1"
+                >
+                  Generate Test Cases
+                </button>
               </StackItem>
               <StackItem>{renderSpinner()}</StackItem>
             </Stack>
@@ -87,7 +100,7 @@ export function Testing() {
               name="Test Result"
               editorProps={{ $blockScrolling: true }}
               value={testcases}
-              style={{ margin: 16 }}
+              style={{ margin: 16, width: "40vw" }}
               setOptions={{
                 enableBasicAutocompletion: true,
                 enableLiveAutocompletion: true,
