@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./CoSpace.css";
 import ChatBot from "react-simple-chatbot";
-import axios from "axios";
 import FetchData from "../FetchData/FetchData";
 import { ThemeProvider } from "styled-components";
+import axiosClient from "../../services/axios-client";
 
 const theme = {
   background: "#f5f8fb",
@@ -23,11 +23,48 @@ const CoSpace = () => {
     pass: "",
     username: "",
   });
+  const [meetings, setMeetings] = useState([]);
+  const [firstMessage, setFirstMessage] = useState();
+
+  const addMeeting = async()=>{
+    await axiosClient
+      .post("api/add_meeting")
+      .then(function (response) {
+        console.log(response.data.message);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  const getChat = async () => {
+    await axiosClient
+      .post("api/get_chat")
+      .then(function (response) {
+        setFirstMessage(response.data.message);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    (async () => {
+      await axiosClient
+        .get("api/meetings")
+        .then(function (response) {
+          setMeetings(response.data.meetings);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    })();
+  }, []);
 
   const step = [
     {
       id: "1",
-      message: "Hi! How can I help you today?",
+      message: firstMessage,
       trigger: "2",
     },
     {
@@ -40,27 +77,14 @@ const CoSpace = () => {
       component: <FetchData />,
       // message: "AA raha {previousValue}",
       asMessage: true,
+
       trigger: "4",
     },
     {
       id: "4",
-      message: "Do you need anything else?",
-      trigger: "5",
-    },
-    {
-      id: "5",
       user: true,
       trigger: "2",
     },
-  ];
-
-  const data = [
-    { date: "2024-05-18", agenda: "Project Kickoff" },
-    {
-      date: "2024-05-19",
-      agenda: "Requirement Gathering",
-    },
-    { date: "2024-05-20", agenda: "Development Start" },
   ];
 
   return (
@@ -96,11 +120,14 @@ const CoSpace = () => {
           </div>
           <button
             className="meet_join_button"
-            onClick={() =>
+            onClick={() =>{
+              addMeeting()
               window.open(
                 `http://localhost:3001?username=${meetInfo.username}`,
                 "_blank"
               )
+            }
+              
             }
           >
             JOIN MEET
@@ -117,14 +144,17 @@ const CoSpace = () => {
               </tr>
             </thead>
             <tbody>
-              {data.map((row, index) => (
+              {meetings.map((row, index) => (
                 <tr key={index}>
-                  <td>{row.date}</td>
+                  <td>{row.meeting_id}</td>
                   <td>{row.agenda}</td>
                   <td className="narrow_column">
                     <button
                       className="cospace_table_button"
-                      onClick={() => localStorage.setItem("meetId", row.date)}
+                      onClick={() => {
+                        localStorage.setItem("meetId", row.meeting_id);
+                        getChat();
+                      }}
                     >
                       View meeting
                     </button>
@@ -135,7 +165,9 @@ const CoSpace = () => {
           </table>
         </div>
       </div>
-      <ChatBot headerTitle="CoSpace Bot" steps={step} floating={true} />
+      {firstMessage && (
+        <ChatBot headerTitle="CoSpace Bot" steps={step} floating={true} />
+      )}
     </ThemeProvider>
   );
 };
