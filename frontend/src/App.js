@@ -10,7 +10,6 @@ import Jiraintegration from "./components/Jiraintegration/Jiraintegration";
 import Deployment from "./components/Deployment/Deployment";
 import CoSpace from "./components/CoSpace/CoSpace";
 import { Testing } from "./components/Testing/Testing";
-import Markdown from "react-markdown";
 import MarkdownToPdf from "./components/Laskhabot/CustomMarkdown";
 
 function App() {
