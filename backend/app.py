@@ -24,6 +24,12 @@ load_dotenv()
 
 GEMINI_MODEL_KEY = os.getenv("GEMINI_API_KEY")
 GEMINI_MODEL_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key="+GEMINI_MODEL_KEY
+GITHUB_API_URL = "https://api.github.com/repos/mansidw/sample_flask_app_jenkins/contents"
+HEADERS = {
+    "Authorization": "Bearer "+os.getenv("GITHUB_PAT"),
+    "Accept": "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28"
+}
 
 app = Flask(__name__)
 CORS(app)
@@ -188,7 +194,9 @@ def chat():
     
     response = requests.post(MODEL_URL, headers=headers, json=data)
     response = response.json()
+    print(response)
     text = response["candidates"][0]["content"]["parts"][0]["text"]
+
     
     return {"data": text}, 200
 
@@ -247,10 +255,11 @@ def open_chat():
             
             # Update the transcript field of the last meeting entry
             user_collection.update_one({'_id': last_meeting['_id']}, {'$set': {'transcript': transcript}})
-        return jsonify({'message': '"Welcome! How can I assist you today?"'}), 200
+        return jsonify({'message': '"Welcome! How can I assist you today mansi?"'}), 200
             
     except:
         return jsonify({'error': 'Try again!'}), 404
+
 
 @app.route('/api/design', methods=["POST"])
 def design_mermaid():
@@ -269,43 +278,6 @@ def design_mermaid():
     headers = {"Content-Type": "application/json"}
     
     prompt = "Generate mermaid js \'" + diagram_name + " code\' for \'" + user_prompt + "\' . Example of mermaid js " + diagram_name + " is \'" + diagram_code + "\'"
-
-    data = {
-        "contents": [
-            {
-                "parts": [
-                    {
-                        "text": prompt
-                    }
-                ]
-            }
-        ],
-        "safety_settings": [
-            {
-                "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-                "threshold": "BLOCK_NONE"
-            }
-        ]
-    }
-    
-    response = requests.post(MODEL_URL, headers=headers, json=data)
-    response = response.json()
-    text = response["candidates"][0]["content"]["parts"][0]["text"]
-    
-    return {"data": text}, 200
-
-@app.route('/api/security', methods=["POST"])
-def security_checks():
-    user_input = request.json["user_input"]
-
-    user_code = user_input["user_code"]
-
-    MODEL_KEY = os.getenv("GEMINI_API_KEY")
-    MODEL_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key="+MODEL_KEY
-     
-    headers = {"Content-Type": "application/json"}
-    
-    prompt = security_prompts + user_code
 
     data = {
         "contents": [
@@ -375,6 +347,46 @@ def development_code():
     
     return {"data": text}, 200
 
+
+
+
+@app.route('/api/security', methods=["POST"])
+def security_checks():
+    user_input = request.json["user_input"]
+
+    user_code = user_input["user_code"]
+
+    MODEL_KEY = os.getenv("GEMINI_API_KEY")
+    MODEL_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key="+MODEL_KEY
+     
+    headers = {"Content-Type": "application/json"}
+    
+    prompt = security_prompts + user_code
+
+    data = {
+        "contents": [
+            {
+                "parts": [
+                    {
+                        "text": prompt
+                    }
+                ]
+            }
+        ],
+        "safety_settings": [
+            {
+                "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                "threshold": "BLOCK_NONE"
+            }
+        ]
+    }
+    
+    response = requests.post(MODEL_URL, headers=headers, json=data)
+    response = response.json()
+    text = response["candidates"][0]["content"]["parts"][0]["text"]
+    
+    return {"data": text}, 200
+    
 @app.route('/api/testing', methods=['POST'])
 def testing_code():
     # Parse the input string from the request body
@@ -446,6 +458,186 @@ def testing_code():
     # Return the response
     return jsonify({"test_code": completion_content})
 
+
+def get_file_content(url, file_name):
+    file_response = requests.get(url)
+    
+    if file_response.status_code != 200:
+        return None, f"Failed to fetch content, status code {file_response.status_code}"
+
+    content_type = file_response.headers.get('Content-Type', '')
+    content_length = file_response.headers.get('Content-Length', 'Unknown')
+    
+    # Logging for diagnostics
+    print(f"Fetching content for {file_name}")
+    print(f"Content-Type: {content_type}")
+    print(f"Content-Length: {content_length}")
+
+    # Raw content inspection
+    raw_content = file_response.content
+    print(f"Raw content (first 100 bytes): {raw_content[:100]}")
+
+    # Try decoding as text if content type indicates text
+    if 'text' in content_type or 'application/json' in content_type:
+        try:
+            # Detect UTF-16 BOM
+            if raw_content.startswith(b'\xff\xfe') or raw_content.startswith(b'\xfe\xff'):
+                return raw_content.decode('utf-16'), None
+            return raw_content.decode('utf-8'), None
+        except UnicodeDecodeError as e:
+            error_message = f"Error decoding content as UTF-8: {str(e)}"
+            print(error_message)
+            # Try decoding with a different encoding
+            try:
+                return raw_content.decode('latin1'), None
+            except UnicodeDecodeError as e:
+                error_message = f"Error decoding content as Latin-1: {str(e)}"
+                print(error_message)
+                return None, error_message
+    else:
+        # If content type is not text, treat as binary
+        return "Binary file or non-text content", None
+
+@app.route('/api/github_contents',methods=["GET"])
+def get_github_contents():
+    # Making the initial GET request to fetch the list of files
+    response = requests.get(GITHUB_API_URL, headers=HEADERS)
+
+    if response.status_code != 200:
+        return jsonify({"error": "Failed to fetch GitHub contents", "status_code": response.status_code})
+
+    files = response.json()
+    files_content = []
+
+    for file in files:
+        file_name = file['name']
+        download_url = file['download_url']
+        
+        # Fetch the content of each file
+        file_content, error = get_file_content(download_url, file_name)
+        
+        if error:
+            files_content.append({"name": file_name, "content": None, "error": error})
+        else:
+            files_content.append({"name": file_name, "content": file_content})
+
+    return jsonify({"output":files_content})
+
+@app.route('/api/development-jira', methods=['POST'])
+def development_jira():
+
+    file_path = "prompts/prompt_for_dev.txt"
+    with open(file_path, "r") as file:
+        prompt = file.read()
+
+    input = request.json  
+    data=input.get("files")
+    jira=input.get("jira")
+
+    processed_files = []
+    
+    for file in data:
+        name = file.get('name')
+        content = file.get('content')
+        
+        if not name or not content:
+            return jsonify({"error": f"Invalid file entry: {file}"}), 400
+        
+        prompt=prompt+f"\n <file> \n {name} \n \n {content} \n </file>"
+    
+    
+
+    prompt=prompt + f"\n <jira> \n {jira} \n </jira>"
+
+    print(prompt)
+
+    MODEL_KEY = os.getenv("GEMINI_API_KEY")
+    MODEL_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key="+MODEL_KEY
+        
+    headers = {"Content-Type": "application/json"}
+
+    data = {
+        "contents": [
+            {
+                "parts": [
+                    {
+                        "text": prompt
+                    }
+                ]
+            }
+        ],
+        "safety_settings": [
+            {
+                "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                "threshold": "BLOCK_NONE"
+            }
+        ]
+    }
+
+    response = requests.post(MODEL_URL, headers=headers, json=data)
+    response = response.json()
+    text = response["candidates"][0]["content"]["parts"][0]["text"]
+
+    print(text)
+
+    return jsonify({"data":text}), 200
+
+@app.route('/api/design-jira', methods=["POST"])
+def design_jira():
+    user_input = request.json
+
+    jira_text = user_input["jira"]
+    file_text = user_input["files"]
+    diagram_type = "flowchart"
+
+    diagram_name = mermaid_prompts[diagram_type]["name"]
+    diagram_code = mermaid_prompts[diagram_type]["code"]
+
+
+    MODEL_KEY = os.getenv("GEMINI_API_KEY")
+    MODEL_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key="+MODEL_KEY
+     
+    headers = {"Content-Type": "application/json"}
+
+    
+    prompt = "You are a architecture expert in a team. Your team works by assigning jira. You have been assigned a jira with some given requirements. Along with it you also can see and access all the files that are currently a part of the project on github. These files are also available to you as a context. Your job is to generate the Mermaid JS flowchart diagram that would fulfill the requirements of the jira, and would fit in the context of the repository code. The jiras control the functionality of your project and hence it is very important for them to solve the use case. Understand the context from the files of github and derive the structure accordingly. Generate mermaid js \'" + diagram_name + " code.' .Example of mermaid js " + diagram_name + " is \'" + diagram_code + "\'"
+
+    for file in file_text:
+        name = file.get('name')
+        content = file.get('content')
+        
+        if not name or not content:
+            return jsonify({"error": f"Invalid file entry: {file}"}), 400
+        
+        prompt=prompt+f"\n <file> \n {name} \n \n {content} \n </file>"
+    
+    
+
+    prompt=prompt + f"\n <jira> \n {jira_text} \n </jira>"
+
+    data = {
+        "contents": [
+            {
+                "parts": [
+                    {
+                        "text": prompt
+                    }
+                ]
+            }
+        ],
+        "safety_settings": [
+            {
+                "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                "threshold": "BLOCK_NONE"
+            }
+        ]
+    }
+    
+    response = requests.post(MODEL_URL, headers=headers, json=data)
+    response = response.json()
+    text = response["candidates"][0]["content"]["parts"][0]["text"]
+    
+    return jsonify({"data":text}), 200
 
 if __name__ == '__main__':
     user_collection = db_conn()

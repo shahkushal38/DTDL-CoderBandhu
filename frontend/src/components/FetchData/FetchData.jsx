@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axiosClient from "../../services/axios-client";
 
 const FetchData = ({ steps, previousStep, triggerNextStep }) => {
   const [data, setData] = useState(null);
@@ -12,25 +12,32 @@ const FetchData = ({ steps, previousStep, triggerNextStep }) => {
 
   useEffect(() => {
     // Define your API endpoint and parameters here
-    const apiEndpoint = `https://api.restful-api.dev/objects`;
+    const apiEndpoint = `http://127.0.0.1:5000/api/send_message`;
+    (async () => {
+      await axiosClient
+        .post(apiEndpoint, {
+          meeting_id: localStorage.getItem("meetId"),
+          question: userInput,
+        })
+        .then((response) => {
+          setData(response.data.data);
+          setLoading(false);
+          triggerNextStep();
+        })
+        .catch((err) => {
+          setError(err.message);
+          setLoading(false);
+        });
+    })();
+  }, [userInput, triggerNextStep]);
 
-    axios
-      .get(apiEndpoint)
-      .then((response) => {
-        setData(response.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
-  }, [userInput]);
-
-  useEffect(() => {
-    if (!loading && !error) {
-      triggerNextStep();
-    }
-  }, [loading, error, triggerNextStep]);
+  // useEffect(() => {
+  //   if (!loading && !error) {
+  //     setTimeout(() => {
+  //       triggerNextStep();
+  //     }, 5000);
+  //   }
+  // }, [loading, error, triggerNextStep]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -43,7 +50,7 @@ const FetchData = ({ steps, previousStep, triggerNextStep }) => {
   return (
     <div>
       {/* Customize how you want to display the fetched data */}
-      <div>Data: {JSON.stringify(data)}</div>
+      {data && <div> {data}</div>}
       {/* <button onClick={() => triggerNextStep()}>Next</button> */}
     </div>
   );

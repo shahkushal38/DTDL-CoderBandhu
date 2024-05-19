@@ -18,6 +18,16 @@ const SideNavbar = () => {
                 <p>Dashboard</p>
               </li>
             </Link>
+            <Link to="jira">
+              <li
+                className={`nav_item ${
+                  currentPath === "/jira" ? "active" : ""
+                }`}
+              >
+                <img src="./design_logo.png" alt="" className="yellow_logo" />
+                <p>Jira</p>
+              </li>
+            </Link>
             <Link to="design">
               <li
                 className={`nav_item ${
