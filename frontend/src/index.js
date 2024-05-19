@@ -8,6 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import DevelopmentState from "./context/Development/developmentState";
 import TestingState from "./context/Testing/testingState";
 import { render } from "react-dom";
+import LakshaBotState from "./context/LakshaBot/lakshaBotState";
 
 // const root = ReactDOM.createRoot(document.getElementById("root"));
 render(
@@ -17,7 +18,9 @@ render(
       <DevelopmentState>
         <TestingState>
           <SecurityState>
-            <App />
+            <LakshaBotState>
+              <App />
+            </LakshaBotState>
           </SecurityState>
         </TestingState>
       </DevelopmentState>
