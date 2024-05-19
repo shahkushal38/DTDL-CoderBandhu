@@ -48,6 +48,7 @@
     width: 100px;
     margin: 20px;
     cursor: pointer;
+    font-family: 'Poppins';
 }
 
 .design_submit_button:disabled {
@@ -59,4 +60,79 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.dev_button1{
+    color: white;
+    background-color: #5EDB63;
+    outline: none;
+    border: 1px solid #5EDB63;
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: auto;
+    margin: 10px;
+    cursor: pointer;
+    font-family: 'Poppins';
+}
+
+.dev_button1:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+  }
+
+.dev_button2{
+    color: white;
+    background-color: #652F8D;
+    outline: none;
+    border: 1px solid #652F8D;
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: auto;
+    margin: 10px;
+    cursor: pointer;
+    font-family: 'Poppins';
+}
+
+.dev_button2:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+  }
+
+  .dev_button3{
+    color: white;
+    background-color: #F59121;
+    outline: none;
+    border: 1px solid #F59121;
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: auto;
+    margin: 10px;
+    cursor: pointer;
+    font-family: 'Poppins';
+}
+
+.dev_button3:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+  }
+
+.dev_textarea{
+    margin-left: 20px;
+    padding: 15px 15px;
+    background-color: #2D2D2D;
+    border: 1px;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Poppins';
+    width: 100%;
+}
+
+.dev_textarea::placeholder {
+    color: rgb(201, 201, 201);
+    opacity: 1; /* Firefox */
+    font-family: 'Poppins';
+}
+
+.dev_textarea:focus{
+    outline: none;
 }
