@@ -10,6 +10,8 @@ import Jiraintegration from "./components/Jiraintegration/Jiraintegration";
 import Deployment from "./components/Deployment/Deployment";
 import CoSpace from "./components/CoSpace/CoSpace";
 import { Testing } from "./components/Testing/Testing";
+import Markdown from "react-markdown";
+import MarkdownToPdf from "./components/Laskhabot/CustomMarkdown";
 
 function App() {
   return (
@@ -28,6 +30,7 @@ function App() {
             <Route path="/cospace" element={<CoSpace />} />
             <Route path="/" element={<Home />} />
             <Route path="/jira" element={<Jiraintegration />} />
+            <Route path="/markdown" element={<MarkdownToPdf />} />
           </Routes>
         </div>
       </div>
