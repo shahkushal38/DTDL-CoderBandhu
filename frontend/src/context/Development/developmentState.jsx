@@ -45,7 +45,7 @@ function DevelopmentState({ children }) {
             .then(function (response) {
 
                 let res = response.data;
-                
+
                 res = res.data
                 res = res.toString()
                 res = res.substr(res.indexOf("\n", res.indexOf("```")) + 1);

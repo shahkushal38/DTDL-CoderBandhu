@@ -104,7 +104,6 @@ export function Development() {
         prompt: userPrompt,
         code: value,
       };
-
       getQueAndAns(inputObject).then(() => {
         setIsDisableSubmit(false);
       });
@@ -232,7 +231,7 @@ export function Development() {
 
               <Stack verticalFill>
                 <StackItem>
-                  {/* <TextField
+                  <TextField
                     styles={{
                       root: { margin: 16 },
                       wrapper: { color: "white" },
@@ -241,8 +240,8 @@ export function Development() {
                     multiline
                     rows={3}
                     onChange={handleTextOnChange}
-                  /> */}
-                  <h3 style={{ paddingLeft: "20px" }}>Enter your prompt:</h3>
+                  />
+                  {/* <h3 style={{ paddingLeft: "20px" }}>Enter your prompt:</h3>
                   <textarea
                     name="prompt"
                     id=""
@@ -251,7 +250,7 @@ export function Development() {
                     multiline
                     onChange={handleTextOnChange}
                     className="dev_textarea"
-                  ></textarea>
+                  ></textarea> */}
                 </StackItem>
                 <StackItem>
                   {/* <PrimaryButton
